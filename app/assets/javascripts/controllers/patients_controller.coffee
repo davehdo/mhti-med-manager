@@ -16,7 +16,7 @@ controllers.controller("PatientsShowController", ["$scope", "$routeParams", "$lo
 # in case there is a flash message, pull it into scope so the view has access to it
 	$scope.flash = flash
 
-	$scope.patient = Patient.get({ id: $routeParams.id})
+	# $scope.patient = Patient.get({ id: $routeParams.id})
 ])
 
 

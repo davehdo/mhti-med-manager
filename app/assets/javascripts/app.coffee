@@ -27,7 +27,7 @@ receta.config([ "$routeProvider",
 				templateUrl: "patients/edit.html"
 			)
 			.otherwise(
-				redirectTo: "/patients"
+				redirectTo: "/patients/1"
 			)
 ])
 
