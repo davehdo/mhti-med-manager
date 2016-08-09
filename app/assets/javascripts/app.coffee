@@ -22,6 +22,10 @@ receta.config([ "$routeProvider",
 				controller: "PatientsShowController"
 				templateUrl: "patients/show.html"
 			)
+			.when("/patients/:id/medications",
+				controller: "PatientsMedicationsController"
+				templateUrl: "patients/medications.html"
+			)
 			.when("/patients/:id/edit",
 				controller: "PatientsEditController"
 				templateUrl: "patients/edit.html"

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :patients, only: [:index, :show, :create, :update, :destroy], defaults: {format: :json}
+
+  resources :medications, only: [:index, :show, :create, :update, :destroy], defaults: {format: :json}
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

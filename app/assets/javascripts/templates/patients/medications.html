@@ -1,0 +1,66 @@
+<div class="alert alert-warning" ng-show="flash.getMessage()">
+    <p>{{flash.getMessage()}}</p>
+</div>
+
+<h1 class="text-center">Medication Education</h1>
+
+
+<style type="text/css" media="screen">
+body {
+	font-size: 2em; 
+}
+	
+</style>
+
+
+<table class="table">
+
+	<tr ng-repeat="med in medications">
+		<td>
+			<img src=""/>
+		</td>
+		<td>
+			{{ med.name }}<br />
+
+			<span class="text-muted">{{ med.dosage }} {{ med.frequencyInWords() }}</span>
+		</td>
+
+		<td>
+			{{ med.description || "This medication is for prevention of stroke"}}
+		</td>
+		<td class="text-center">
+		</td>
+	</tr>
+
+</table>
+
+<form class="form-inline">	
+	<div class="input-group">	
+		<label class="form-label">Medication Name</label>
+		<input type="text" ng-model="newMedication.name" class="form-control" />
+	</div>
+
+	<div class="input-group">	
+		<label class="form-label">Medication Dosage</label>
+		<input type="text" ng-model="newMedication.dosage" class="form-control" />
+	</div>
+
+	<div class="input-group">	
+		<label style="padding-right: 12px; ">
+			<input type="checkbox" ng-model="newMedication.take_am" class="" />
+		AM</label>
+
+		<label style="padding-right: 12px; ">
+			<input type="checkbox" ng-model="newMedication.take_noon" class="" />
+		NOON</label>
+
+		<label style="padding-right: 12px; ">
+			<input type="checkbox" ng-model="newMedication.take_pm" class="" />
+		PM</label>
+	</div>
+
+	<div class="input-group">
+		<input type="submit" class="btn btn-default" ng-click="submitForm()">
+	</div>
+</form>
+

@@ -12,12 +12,32 @@ controllers.controller("PatientsIndexController", ["$scope", "Patient", "flash",
 ])
 
 
+controllers.controller("PatientsMedicationsController", ["$scope", "$routeParams", "$location", "Patient", "Medication", "flash", ($scope, $routeParams, $location, Patient, Medication, flash) -> 
+# in case there is a flash message, pull it into scope so the view has access to it
+	$scope.flash = flash
+
+	# $scope.patient = Patient.get({ id: $routeParams.id})
+	
+	$scope.medications = Medication.query()
+	
+	$scope.newMedication = new Medication
+	
+	$scope.submitForm = ->
+		$scope.newMedication.$save(null, () ->
+			flash.currentMessage "Added"
+			$scope.newMedication = new Medication
+			$scope.medications = Medication.query()
+		)
+		
+])
+
 controllers.controller("PatientsShowController", ["$scope", "$routeParams", "$location", "Patient", "flash", ($scope, $routeParams, $location, Patient, flash) -> 
 # in case there is a flash message, pull it into scope so the view has access to it
 	$scope.flash = flash
 
 	# $scope.patient = Patient.get({ id: $routeParams.id})
 ])
+
 
 
 controllers.controller("PatientsNewController", ["$scope", "$location", "Patient", "flash", ($scope, $location, Patient, flash) -> 
