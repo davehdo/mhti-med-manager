@@ -31,6 +31,58 @@ controllers.controller("PatientsMedicationsController", ["$scope", "$routeParams
 		
 ])
 
+
+controllers.controller("PatientsPerformanceController", ["$scope", "$routeParams", "$location", "Patient", "Medication", "flash", ($scope, $routeParams, $location, Patient, Medication, flash) -> 
+# in case there is a flash message, pull it into scope so the view has access to it
+	$scope.flash = flash
+
+	# $scope.patient = Patient.get({ id: $routeParams.id})
+	
+	$scope.chartData = [
+        ['Nitrogen', 0.78],
+        ['Oxygen', 0.21],
+        ['Other', 0.01]
+      ]
+	
+		
+])
+
+
+
+controllers.directive('barChart', () ->
+	restrict: 'ACE'
+	scope: 
+		chartData: "="
+	link: (scope, element, attrs, controllers) ->
+
+		google.charts.load('current', {packages: ['corechart']})
+				
+		drawChart = () ->
+
+			# Define the chart to be drawn.
+			data = new google.visualization.DataTable()
+			data.addColumn('string', 'Element')
+			data.addColumn('number', 'Percentage')
+			data.addRows([
+				['Nitrogen', 0.78],
+				['Oxygen', 0.21],
+				['Other', 0.01]
+			]);
+
+			# Instantiate and draw the chart.
+
+			chart = new google.visualization.PieChart( element[0] )
+			chart.draw(data, null)
+		
+		
+		scope.$watch("chartData", ->
+			google.charts.setOnLoadCallback(drawChart)
+		)
+	
+
+)
+
+
 controllers.controller("PatientsShowController", ["$scope", "$routeParams", "$location", "Patient", "flash", ($scope, $routeParams, $location, Patient, flash) -> 
 # in case there is a flash message, pull it into scope so the view has access to it
 	$scope.flash = flash
