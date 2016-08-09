@@ -34,7 +34,9 @@ body {
 
 </table>
 
-<form class="form-inline">	
+<a ng-click="showAdd = true" ng-hide="showAdd">Add another...</a>
+
+<form class="well" ng-show="showAdd">	
 	<div class="input-group">	
 		<label class="form-label">Medication Name</label>
 		<input type="text" ng-model="newMedication.name" class="form-control" />
