@@ -61,14 +61,19 @@ controllers.controller("PatientsPerformanceController", ["$scope", "$routeParams
 
 
 
-controllers.directive('barChart', () ->
+controllers.directive('barChart', ["$window", ($window) ->
 	restrict: 'ACE'
 	scope: 
 		barChart: "="
 		chartOptions: "="
 	link: (scope, element, attrs, controllers) ->
 
-		google.charts.load('current', {packages: ['corechart']})
+		if $window.googleChartsLoaded
+			false
+		else
+			$window.googleChartsLoaded = true
+			google.charts.load('current', {packages: ['corechart']})
+
 				
 		drawChart = () ->
 			# Define the chart to be drawn.
@@ -100,7 +105,7 @@ controllers.directive('barChart', () ->
 		)
 	
 
-)
+])
 
 
 controllers.controller("PatientsShowController", ["$scope", "$routeParams", "$location", "Patient", "flash", ($scope, $routeParams, $location, Patient, flash) -> 
