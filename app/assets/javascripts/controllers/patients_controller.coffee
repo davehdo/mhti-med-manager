@@ -12,11 +12,13 @@ controllers.controller("PatientsIndexController", ["$scope", "Patient", "flash",
 ])
 
 
-controllers.controller("PatientsMedicationsController", ["$scope", "$routeParams", "$location", "Patient", "Medication", "flash", ($scope, $routeParams, $location, Patient, Medication, flash) -> 
+controllers.controller("PatientsMedicationsController", ["$scope", "$routeParams", "$location", "$sce", "Patient", "Medication", "flash", ($scope, $routeParams, $location, $sce, Patient, Medication, flash) -> 
 # in case there is a flash message, pull it into scope so the view has access to it
 	$scope.flash = flash
 
 	# $scope.patient = Patient.get({ id: $routeParams.id})
+	
+	$scope.$sce = $sce
 	
 	$scope.medications = Medication.query()
 	

@@ -18,9 +18,10 @@
 		</td>
 
 		<td>
-			{{ med.description || "This medication is for prevention of stroke"}}
-		</td>
-		<td class="text-center">
+			<div ng-repeat="entry in med.education" ng-show="entry.title == 'Why is this medication prescribed?'">
+				<h3>{{entry.title}}</h3>
+				<div ng-bind-html="$sce.trustAsHtml(entry.body)"></div>
+			</div>
 		</td>
 	</tr>
 
