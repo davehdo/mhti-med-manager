@@ -24,6 +24,14 @@ controllers.controller("PatientsMedicationsController", ["$scope", "$routeParams
 	
 	$scope.newMedication = new Medication
 	
+	$scope.destroyMedication = (med) ->
+		if confirm "Do you want to remove #{ med.name } from the medication list?"
+			
+			med.$delete({id: med.id}, ->
+				flash.currentMessage "Removed"
+				_.remove( $scope.medications, (m) -> m==med)
+			)
+			
 	$scope.submitForm = ->
 		$scope.newMedication.$save(null, () ->
 			flash.currentMessage "Added"
