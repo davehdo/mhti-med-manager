@@ -38,13 +38,25 @@ controllers.controller("PatientsPerformanceController", ["$scope", "$routeParams
 
 	# $scope.patient = Patient.get({ id: $routeParams.id})
 	
-	$scope.chartData = [
-        ['Nitrogen', 0.78],
-        ['Oxygen', 0.21],
-        ['Other', 0.01]
-      ]
+	threshold = 0.9
+	$scope.chartData = _.concat( [['Week', 'Compliance', { role: 'style' }]], _.times(20, (n)->
+		rate = _.random(0.80, 1.00)
+		["#{n}", rate * 100 , if rate > threshold then "rgb(183, 183, 183)" else "rgb(217, 83, 79)"]
+	))
 	
-		
+	$scope.chartOptions ||=
+		title: 'Medication compliance, by week'
+		legend: 
+			position: 'none' 
+		chart: 
+			subtitle: 'popularity by percentage' 
+		axes:
+			x:
+				0:
+					side: 'top'
+					label: 'White to move'
+		bar:
+			groupWidth: "90%"
 ])
 
 
@@ -52,30 +64,38 @@ controllers.controller("PatientsPerformanceController", ["$scope", "$routeParams
 controllers.directive('barChart', () ->
 	restrict: 'ACE'
 	scope: 
-		chartData: "="
+		barChart: "="
+		chartOptions: "="
 	link: (scope, element, attrs, controllers) ->
 
 		google.charts.load('current', {packages: ['corechart']})
 				
 		drawChart = () ->
-
 			# Define the chart to be drawn.
-			data = new google.visualization.DataTable()
-			data.addColumn('string', 'Element')
-			data.addColumn('number', 'Percentage')
-			data.addRows([
-				['Nitrogen', 0.78],
-				['Oxygen', 0.21],
-				['Other', 0.01]
-			]);
+			data = google.visualization.arrayToDataTable(scope.barChart)
 
 			# Instantiate and draw the chart.
 
-			chart = new google.visualization.PieChart( element[0] )
-			chart.draw(data, null)
+			scope.chartOptions ||=
+				title: 'Chess opening moves'
+				width: 900
+				legend: 
+					position: 'none' 
+				chart: 
+					subtitle: 'popularity by percentage' 
+				axes:
+					x:
+						0:
+							side: 'top'
+							label: 'White to move'
+				bar:
+					groupWidth: "90%"
+				
 		
+			chart = new google.visualization.ColumnChart( element[0] )
+			chart.draw(data, scope.chartOptions)
 		
-		scope.$watch("chartData", ->
+		scope.$watch("barChart", ->
 			google.charts.setOnLoadCallback(drawChart)
 		)
 	
