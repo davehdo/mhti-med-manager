@@ -5,14 +5,14 @@
 <h1 class="text-center">Medication Education</h1>
 
 <div class="row" ng-repeat="med in medications" style="margin-bottom: 9px; ">
-	<div class="col-sm-3">
+	<div class="col-xs-3">
 		<h3>{{ med.name }}</h3>
 		<span class="text-muted">{{ med.dosage }} {{ med.frequencyInWords() }}</span>
 		<br /><br />
 		<img ng-src="http://pillbox.nlm.nih.gov/assets/small/540920173.jpg" class="img-rounded" />
 	</div><!-- /col -->
 
-	<div class="col-sm-9">
+	<div class="col-xs-9">
 		<a class="pull-right text-muted" ng-click="destroyMedication( med )"><i class="fa fa-close"></i></a>
 		<div ng-repeat="entry in med.education" ng-show="entry.title == 'Why is this medication prescribed?'">
 			<h3>{{entry.title}}</h3>
