@@ -10,12 +10,16 @@ class Medication
   
   before_save :fetch_medline
   
-  def fetch_medline
+  def fetch_medline( force = false )
     if self.name
-      begin
+      if force
         self.education ||= MedlinePlus2.find_drug_by_name( self.name )
-      rescue
-        self.education ||= []
+      else
+        begin
+          self.education ||= MedlinePlus2.find_drug_by_name( self.name )
+        rescue
+          self.education ||= []
+        end
       end
     else
       self.education ||= []
