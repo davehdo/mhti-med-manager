@@ -39,24 +39,22 @@ controllers.controller("PatientsPerformanceController", ["$scope", "$routeParams
 	# $scope.patient = Patient.get({ id: $routeParams.id})
 	
 	threshold = 0.9
-	$scope.chartData = _.concat( [['Week', 'Compliance', { role: 'style' }]], _.times(20, (n)->
+	$scope.chartData1 = _.concat( [['Week', 'Compliance', { role: 'style' }]], _.times(20, (n)->
 		rate = _.random(0.80, 1.00)
 		["#{n}", rate * 100 , if rate > threshold then "rgb(183, 183, 183)" else "rgb(217, 83, 79)"]
 	))
 	
-	$scope.chartOptions ||=
+	$scope.chartOptions1 =
 		title: 'Medication compliance, by week'
-		legend: 
-			position: 'none' 
-		chart: 
-			subtitle: 'popularity by percentage' 
-		axes:
-			x:
-				0:
-					side: 'top'
-					label: 'White to move'
-		bar:
-			groupWidth: "90%"
+		
+	$scope.chartData2 = _.concat( [['Week', 'Compliance', { role: 'style' }]], _.times(20, (n)->
+		rate = _.random(0.80, 1.00)
+		["#{n}", rate * 100 , if rate > threshold then "rgb(183, 183, 183)" else "rgb(217, 83, 79)"]
+	))
+	
+	$scope.chartOptions2 =
+		title: 'Exercise compliance, by week'
+	
 ])
 
 
@@ -81,13 +79,12 @@ controllers.directive('barChart', ["$window", ($window) ->
 
 			# Instantiate and draw the chart.
 
-			scope.chartOptions ||=
-				title: 'Chess opening moves'
-				width: 900
+			defaultOptions = 
+				title: 'Default title'
 				legend: 
 					position: 'none' 
 				chart: 
-					subtitle: 'popularity by percentage' 
+					subtitle: 'Default subtitle' 
 				axes:
 					x:
 						0:
@@ -95,10 +92,12 @@ controllers.directive('barChart', ["$window", ($window) ->
 							label: 'White to move'
 				bar:
 					groupWidth: "90%"
+			
+
 				
 		
 			chart = new google.visualization.ColumnChart( element[0] )
-			chart.draw(data, scope.chartOptions)
+			chart.draw(data, _.merge(defaultOptions, scope.chartOptions))
 		
 		scope.$watch("barChart", ->
 			google.charts.setOnLoadCallback(drawChart)
