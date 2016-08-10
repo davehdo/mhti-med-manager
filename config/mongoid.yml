@@ -8,7 +8,7 @@ production:
         retry_interval: 1
         timeout: 15
         refresh_interval: 10
-		
+
 development:
   # Configure available database clients. (required)
   clients:
