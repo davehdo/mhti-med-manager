@@ -16,12 +16,14 @@
 		<a class="pull-right text-muted" ng-click="destroyMedication( med )"><i class="fa fa-close"></i></a>
 		<div ng-repeat="entry in med.education" ng-show="entry.title == 'Why is this medication prescribed?'">
 			<h3>{{entry.title}}</h3>
-			<div ng-bind-html="$sce.trustAsHtml(entry.body)"></div>
+			<div ng-bind-html="$sce.trustAsHtml(entry.body)" style="max-height: 310px; text-overflow: ellipsis; overflow: hidden; "></div>
 		</div>
 	</div><!-- /col -->
 </div><!-- /row -->
 
-<a ng-click="showAdd = true" ng-hide="showAdd">Add another...</a>
+<div class="text-center" style="margin-top: 30px; ">
+	<a class="btn btn-default" ng-click="showAdd = true" ng-hide="showAdd">Add another...</a>
+</div>
 
 <form class="well" ng-show="showAdd">	
 	<div class="input-group">	
