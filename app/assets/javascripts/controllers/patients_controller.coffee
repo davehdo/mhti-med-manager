@@ -55,7 +55,7 @@ controllers.controller("PatientsPerformanceController", ["$scope", "$routeParams
 	))
 	
 	$scope.chartOptions1 =
-		title: 'Medication compliance, by week'
+		title: 'Medication adherence, by week'
 		
 	$scope.chartData2 = _.concat( [['Week', 'Compliance', { role: 'style' }]], _.times(20, (n)->
 		rate = _.random(0.80, 1.00)
@@ -63,7 +63,15 @@ controllers.controller("PatientsPerformanceController", ["$scope", "$routeParams
 	))
 	
 	$scope.chartOptions2 =
-		title: 'Exercise compliance, by week'
+		title: 'Blood pressure control, by week'
+
+	$scope.chartData3 = _.concat( [['Week', 'Compliance', { role: 'style' }]], _.times(20, (n)->
+		rate = _.random(0.80, 1.00)
+		["#{n}", rate * 100 , if rate > threshold then "rgb(183, 183, 183)" else "rgb(217, 83, 79)"]
+	))
+	
+	$scope.chartOptions3 =
+		title: 'Exercise adherence, by week'
 	
 ])
 
