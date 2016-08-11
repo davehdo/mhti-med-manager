@@ -28,12 +28,12 @@
 			<%
 				[
 					"/mugshot-zack.png", 
-					"/mugshot-zack.png"
+					"/mugshot-shetty.jpg"
 				].each_with_index do |img_url, i|
 			%>
 				<td>
 					<label><%= f.radio_button :image_url, img_url %> <%= i + 1 %><br />
-						<%= image_tag img_url, style: "width: 100px; " %>
+						<%= image_tag img_url, class: "img-circle", style: "width: 120px; " %>
 					</label>
 				</td>
 			<% end %>
