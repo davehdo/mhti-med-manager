@@ -9,9 +9,8 @@
 		<h3>{{ med.name }}</h3>
 		<span class="text-muted">{{ med.dosage }} {{ med.frequencyInWords() }}</span>
 		<br /><br />
-		<img ng-src="http://pillbox.nlm.nih.gov/assets/small/540920173.jpg" style="width: 100px;" class="img-rounded" />
+		<img ng-src="{{ randomPillImageUrl()  }}" style="width: 100px;" class="img-rounded" />
 	</div><!-- /col -->
-
 	<div class="col-sm-9">
 		<a class="pull-right text-muted" ng-click="destroyMedication( med )"><i class="fa fa-close"></i></a>
 		<div ng-repeat="entry in med.education" ng-show="entry.title == 'Why is this medication prescribed?'">

@@ -24,6 +24,49 @@ controllers.controller("PatientsMedicationsController", ["$scope", "$routeParams
 	
 	$scope.newMedication = new Medication
 	
+	$scope.urls = ["/pills/00002-3228-30_391E1C80.jpg", 
+		"/pills/00002-3229-30_3E1E1F50.jpg",
+		"/pills/00002-3235-60_1B158D9C.jpg",
+		"/pills/00002-3238-30_361E1B30.jpg",
+		"/pills/00002-3239-30_3F1E1F80.jpg",
+		"/pills/00002-3250-30_431E21C1.jpg",
+		"/pills/00002-3251-30_451E2281.jpg",
+		"/pills/00002-3270-30_A91354EA.jpg",
+		"/pills/00002-4462-30_B215591A.jpg",
+		"/pills/00002-4463-30_B5155ACA.jpg",
+		"/pills/00002-4464-30_B8155C1A.jpg",
+		"/pills/00002-4770-90_9516CAA6.jpg",
+		"/pills/00002-4771-90_8F16C7A6.jpg",
+		"/pills/00002-4772-90_8C16C656.jpg",
+		"/pills/00003-4214-21_1A1B8D0C.jpg",
+		"/pills/00003-4222-16_F215F93F.jpg",
+		"/pills/00004-0259-01_B8135C6A.jpg",
+		"/pills/00004-0260-01_5E132F39.jpg",
+		"/pills/00004-0800-85_491E24C1.jpg",
+		"/pills/00006-0032-20_DF16EFC7.jpg",
+		"/pills/00006-0112-54_131609E0.jpg",
+		"/pills/02c91fba-9c47-43ef-ac78-e82369798834_50419-409_1_50419-0409-01_SPLIMAGE30_A619530A.jpg",
+		"/pills/02c91fba-9c47-43ef-ac78-e82369798834_50419-409_2_50419-0409-01_SPLIMAGE30_A91954BA.jpg",
+		"/pills/02c91fba-9c47-43ef-ac78-e82369798834_50419-409_3_50419-0409-01_SPLIMAGE30_AC19560A.jpg",
+		"/pills/02c91fba-9c47-43ef-ac78-e82369798834_50419-409_4_50419-0409-01_SPLIMAGE30_AF1957BA.jpg",
+		"/pills/02c91fba-9c47-43ef-ac78-e82369798834_50419-409_5_50419-0409-01_SPLIMAGE30_B219590A.jpg",
+		"/pills/0e5139d8-bf61-4f21-a36b-81b96b9b07d1_0173-0822_0_00173-0822-04_SPLIMAGE30_2A19950C.jpg",
+		"/pills/3bf1718a-fedc-4834-831e-b3b044f80ee6_66116-821_0_00093-3109-53_Amoxicillin_500mg_Caps.jpg",
+		"/pills/4c0f348a-a65d-409c-8668-207c82a5e3cb_0093-2267_0_00093-2267-01.jpg",
+		"/pills/4c0f348a-a65d-409c-8668-207c82a5e3cb_0093-2268_0_00093-2268-01.jpg",
+		"/pills/4c0f348a-a65d-409c-8668-207c82a5e3cb_0093-3107_0_00093-3107-01.jpg",
+		"/pills/4c0f348a-a65d-409c-8668-207c82a5e3cb_0093-3109_0_00093-3109-53.jpg",
+		"/pills/4c6f4f9e-f3f5-4ecf-9f40-887e037e8847_0172-5728_0_00172-5728-60.jpg",
+		"/pills/4c6f4f9e-f3f5-4ecf-9f40-887e037e8847_0172-5729_0_00172-5729-60.jpg",
+		"/pills/5bc62cef-1c78-4ddb-bdde-0574e5218f63_0023-9350_0_capsules.jpg"
+	]
+	
+	$scope.randomPillImageUrl = () ->
+		
+		# _.sample( urls )
+		# index = _.random(0, $scope.urls.length - 1)
+		$scope.urls[0]
+		
 	$scope.destroyMedication = (med) ->
 		if confirm "Do you want to remove #{ med.name } from the medication list?"
 			
