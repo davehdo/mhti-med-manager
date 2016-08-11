@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :patients, only: [:index, :show, :create, :update, :destroy], defaults: {format: :json}
 
-  resources :medications, only: [:index, :show, :create, :update, :destroy], defaults: {format: :json}
+  resources :medications, only: [:index, :new, :edit, :show, :create, :update, :destroy] #, defaults: {format: :json}
   
   resources :comments
   

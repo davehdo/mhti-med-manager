@@ -10,6 +10,8 @@ class Medication
   
   before_save :fetch_medline
   
+  require "medline_plus_2.rb"
+  
   def fetch_medline( force = false )
     if self.name
       if force
