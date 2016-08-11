@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :medications, only: [:index, :show, :create, :update, :destroy], defaults: {format: :json}
   
+  resources :comments
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
