@@ -4,7 +4,7 @@
 <h1>Listing Comments</h1>
 
 	<% @comments.each do |comment| %>
-		<div>
+		<div class="clearfix">
 			<a href="<%= edit_comment_url( comment ) %>" class="pull-right"><i class="fa fa-edit"></i></a>
 			<img class="pull-left" src="<%= comment.image_url %>" style="width: 150px; margin-right: 12px; "/>
 			<blockquote>
