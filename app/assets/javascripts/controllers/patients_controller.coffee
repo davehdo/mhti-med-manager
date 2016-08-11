@@ -33,7 +33,9 @@ controllers.controller("PatientsMedicationsController", ["$scope", "$routeParams
 			)
 			
 	$scope.submitForm = ->
+		$scope.loading = true
 		$scope.newMedication.$save(null, () ->
+			$scope.loading = false
 			flash.currentMessage "Added"
 			$scope.newMedication = new Medication
 			$scope.medications = Medication.query()
