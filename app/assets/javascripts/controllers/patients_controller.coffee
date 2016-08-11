@@ -122,24 +122,29 @@ controllers.controller("PatientsShowController", ["$scope", "$routeParams", "$lo
 	$scope.flash = flash
 
 	# $scope.patient = Patient.get({ id: $routeParams.id})
+	
 	$scope.comments = Comment.query( (comments) ->
 		$scope.comment = comments[0]
-
-
+		$scope.timeoutCode = setTimeout( () ->
+			$scope.nextComment()
+			$scope.$apply() # if its not a click, needs an apply call to re-render
+		, 2000 )
 	)
 	
 	$scope.nextComment = () ->
 		if $scope.comments
-			if $scope.comment 
-				currentIndex = $scope.comments.indexOf( $scope.comment ) 
-				nextIndex = currentIndex + 1
-				if nextIndex >= $scope.comments.length
-					nextIndex = 0
-				$scope.comment = $scope.comments[ nextIndex ]
-			else
-				$scope.comment = comments[0]
-			 
-		
+			# if comment is nonexistent then nextIndex should be zero
+			nextIndex = $scope.comments.indexOf( $scope.comment || "xyz") + 1
+			if nextIndex >= $scope.comments.length
+				nextIndex = 0
+			$scope.comment = $scope.comments[ nextIndex ]
+			
+			clearTimeout( $scope.timeoutCode ) if $scope.timeoutCode
+			$scope.timeoutCode = setTimeout( () ->
+				$scope.nextComment()
+				$scope.$apply() # if its not a click, needs an apply call to re-render
+			, 2000 )
+
 ])
 
 
