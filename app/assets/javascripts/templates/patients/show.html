@@ -5,15 +5,14 @@
 <h1 class="text-center">Good Morning, Betty</h1>
 <div class="row">
 	<div class="col-xs-offset-1 col-xs-10">
-		<img class="pull-left" ng-src="/mugshot-zack.png" style="width: 150px; margin-right: 12px; "/>
-		<blockquote>
-			Grandma, remember our walk this afternoon!
-			<footer>Zack</footer>
+		<img ng-click="nextComment()" class="pull-left img-circle" ng-src="{{ comment.image_url }}" style="width: 150px; margin-right: 12px; "/>
+		<blockquote class="pull-left">
+			{{ comment.comment }}
+			<footer>{{ comment.name }}</footer>
 		</blockquote>
-	</div><!-- /col -->
-
-	
+	</div><!-- /col -->	
 </div><!-- /row -->
+
 
 <hr />
 <h2>My Progress</h2>
