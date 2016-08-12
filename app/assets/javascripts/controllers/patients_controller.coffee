@@ -61,12 +61,11 @@ controllers.controller("PatientsMedicationsController", ["$scope", "$routeParams
 		"/pills/5bc62cef-1c78-4ddb-bdde-0574e5218f63_0023-9350_0_capsules.jpg"
 	]
 	
+	$scope.pillCount = 0
 	$scope.randomPillImageUrl = () ->
-		
-		# _.sample( urls )
-		# index = _.random(0, $scope.urls.length - 1)
-		$scope.urls[0]
-		
+		$scope.pillCount += 1
+		$scope.urls[$scope.pillCount]
+
 	$scope.destroyMedication = (med) ->
 		if confirm "Do you want to remove #{ med.name } from the medication list?"
 			
