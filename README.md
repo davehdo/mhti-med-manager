@@ -1,5 +1,12 @@
 # Introduction
-This is a starter template that is Heroku-ready and include the following stack
+This is a mockup of a medication management and tracking tool for post stroke patients. This was built for a capstone project of the Mobile Health Training Institute, August 2016.
+
+## Screenshots
+![alt-text](https://raw.githubusercontent.com/davehdo/mhti-med-manager/master/public/Screenshot%202016-08-12%2010.03.28.png)
+![alt-text](https://raw.githubusercontent.com/davehdo/mhti-med-manager/master/public/Screenshot%202016-08-12%2010.04.12.png)
+![alt-text](https://raw.githubusercontent.com/davehdo/mhti-med-manager/master/public/Screenshot%202016-08-12%2010.04.26.png)
+![alt-text](https://raw.githubusercontent.com/davehdo/mhti-med-manager/master/public/Screenshot%202016-08-12%2010.04.53.png)
+
 
 # Getting started
 
