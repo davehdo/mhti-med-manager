@@ -13,9 +13,11 @@
 	</div><!-- /col -->	
 </div><!-- /row -->
 
-<i class="fa fa-comment-o" ng-click="quoteHint = true" ng-hide="quoteHint"></i>
+<div class="text-right text-muted">
+	<i class="fa fa-comment-o" ng-click="quoteHint = true" ng-hide="quoteHint"></i>
+</div>
 
-<div ng-show="quoteHint">
+<div ng-show="quoteHint" ng-click="quoteHint = false">
 	
 	<br />
 
