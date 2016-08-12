@@ -5,7 +5,11 @@
 
 	<% @comments.each do |comment| %>
 		<div class="clearfix">
-			<a href="<%= edit_comment_url( comment ) %>" class="pull-right"><i class="fa fa-edit"></i></a>
+			<div class="pull-right">
+				<a href="<%= edit_comment_url( comment ) %>"><i class="fa fa-edit"></i></a>
+
+				<%= link_to '<i class="fa fa-close"></i>'.html_safe, comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+			</div>
 			<img class="pull-left" src="<%= comment.image_url %>" style="width: 150px; margin-right: 12px; "/>
 			<blockquote>
 				<%= comment.comment %>
