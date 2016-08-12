@@ -1,5 +1,5 @@
 # Introduction
-This is a mockup of a medication management and tracking tool for post stroke patients. This was built for a capstone project of the Mobile Health Training Institute, August 2016.
+This is a mockup of a medication management and tracking tool for post stroke patients. This was built for a capstone project of the 2SMART team at Mobile Health Training Institute, UCLA, August 2016.
 
 ## Screenshots
 ![alt-text](https://raw.githubusercontent.com/davehdo/mhti-med-manager/master/public/Screenshot%202016-08-12%2010.03.28.png)
