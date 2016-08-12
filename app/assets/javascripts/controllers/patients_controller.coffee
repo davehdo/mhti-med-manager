@@ -175,18 +175,42 @@ controllers.controller("PatientsShowController", ["$scope", "$routeParams", "$lo
 
 	# $scope.patient = Patient.get({ id: $routeParams.id})
 	
+	carouselDelay = 2000
+	updateDelay = 5000
+	
+	
 	$scope.comments = Comment.query( (comments) ->
 		$scope.comment = comments[0]
 		$scope.timeoutCode = setTimeout( () ->
 			$scope.nextComment()
 			$scope.$apply() # if its not a click, needs an apply call to re-render
-		, 2000 )
+		, carouselDelay )
+		$scope.timeoutCode2 = setTimeout( $scope.reloadComments, updateDelay )
 	)
 	
+	
+	$scope.reloadComments = () ->
+		$scope.comments = Comment.query( () ->
+			clearTimeout( $scope.timeoutCode2 ) if $scope.timeoutCode2
+			$scope.timeoutCode2 = setTimeout( $scope.reloadComments, updateDelay )
+		)
+	
+	# we use an ID matcher because the comments array is frequently queried from the server
+	$scope.commentMatches = (a, b) ->
+		a and b and a.id == b.id
+
+
+	$scope.commentIndex = (arrays, b) ->
+		item = _.filter(arrays, (a)->
+			$scope.commentMatches(a,b)
+		)[0] || "xyz"
+		arrays.indexOf(item)
+	
+		
 	$scope.nextComment = () ->
 		if $scope.comments
 			# if comment is nonexistent then nextIndex should be zero
-			nextIndex = $scope.comments.indexOf( $scope.comment || "xyz") + 1
+			nextIndex = $scope.commentIndex($scope.comments, $scope.comment || "xyz") + 1
 			if nextIndex >= $scope.comments.length
 				nextIndex = 0
 			$scope.comment = $scope.comments[ nextIndex ]
@@ -195,7 +219,7 @@ controllers.controller("PatientsShowController", ["$scope", "$routeParams", "$lo
 			$scope.timeoutCode = setTimeout( () ->
 				$scope.nextComment()
 				$scope.$apply() # if its not a click, needs an apply call to re-render
-			, 2000 )
+			, carouselDelay )
 
 ])
 
